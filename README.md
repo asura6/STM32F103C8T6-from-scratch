@@ -1,5 +1,5 @@
-# STM32F103C8-from-scratch
-A minimal example to get a STM32F103C8 up and running under a GNU-toolchain.
+# STM32F103C8T6-from-scratch
+A minimal example to get a STM32F103C8T6 up and running under a GNU-toolchain.
 
 This repository contains a linker script which defines the necessary
 memory-locations, an assembler startup program which sets up a C-environment and
