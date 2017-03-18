@@ -14,6 +14,9 @@ int main(void) {
      * by the 8 MHz external crystal */
     Init_System_Clock(); 
 
+    /* Initialize the GPIO. In this case we set the LED at C13 as an output */
+    INIT_GPIO();
+
     while(1) { 
         LED_Toggle(GPIOC_BASE, 13);
         delay(); 
