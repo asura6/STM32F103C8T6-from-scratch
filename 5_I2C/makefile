@@ -1,5 +1,5 @@
 # The output- and intermediary files will be named $(TARGET) 
-TARGET = timer
+TARGET = I2C
 DEBUG = -g
 
 TOOLCHAIN = arm-none-eabi
