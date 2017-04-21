@@ -1,6 +1,10 @@
 #ifndef STM_USB_FUNCTIONS
 #define STM_USB_FUNCTIONS
 
+#define USB_STATUS_DEFAULT          0x00U
+#define USB_STATUS_ADDRESS_READY    0x01U
+#define USB_STATUS_HID_READY        0x02U 
+
 void USB_EP_Set_Type(uint8_t ep, uint16_t type);
 void USB_EP_Set_Kind(uint8_t ep, uint8_t value);
 void USB_EP_Set_STAT_RX(uint8_t ep, uint16_t rx);

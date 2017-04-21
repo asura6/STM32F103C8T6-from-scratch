@@ -15,10 +15,6 @@
 #define EP_DTOG_MASK (EP_DTOG_TX | EP_DTOG_RX)
 #define EP_TOG_MASK (EP_STAT_MASK | EP_DTOG_MASK)
 
-#define USB_STATUS_DEFAULT          0x00U
-#define USB_STATUS_ADDRESS_READY    0x01U
-#define USB_STATUS_HID_READY        0x02U
-
 /**********************************************/
 /*********   PREPROCESSOR FUNCTIONS   *********/
 /**********************************************/
