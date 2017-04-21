@@ -1,3 +1,4 @@
+/* Robin Isaksson 2017 */ 
 #ifndef STM_USB_def
 #define STM_USB_def
 

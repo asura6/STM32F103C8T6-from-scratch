@@ -1,3 +1,4 @@
+/* Robin Isaksson 2017 */ 
 #include <stm32f10x.h>
 #include <stdint.h>
 #include "./USB_def.h"
@@ -13,6 +14,10 @@
 #define EP_STAT_MASK (EP_STAT_TX | EP_STAT_RX)
 #define EP_DTOG_MASK (EP_DTOG_TX | EP_DTOG_RX)
 #define EP_TOG_MASK (EP_STAT_MASK | EP_DTOG_MASK)
+
+#define USB_STATUS_DEFAULT          0x00U
+#define USB_STATUS_ADDRESS_READY    0x01U
+#define USB_STATUS_HID_READY        0x02U
 
 /**********************************************/
 /*********   PREPROCESSOR FUNCTIONS   *********/
@@ -70,7 +75,7 @@
 /*******************************/
 
 USB_Setup_Packet_t setup_packet;
-uint8_t USB_status = 0;
+uint8_t USB_status = USB_STATUS_DEFAULT;
 uint8_t addr = 0;
 extern HID_report_t HID_report;
 
@@ -242,10 +247,10 @@ void USB_Handle_SETUP(void) {
 
         if (SETUP_Is_Set_Address()) {
             /* Set address request. This request should be completed after the
-             * status stage so the USB_Address_Ready variable is used as a
+             * status stage so the USB_status variable is used as a
              * state-variable to complete this task */
 
-            USB_status = 0x01;
+            USB_status = USB_STATUS_ADDRESS_READY;
             /* Load address into a global value, changing the address later */
             addr = (setup_packet.wValue >> 8U) & USB_DADDR_ADD;
             USB_EP_Set_TX_Count(EP0, 0U);
@@ -265,7 +270,7 @@ void USB_Handle_SETUP(void) {
             USB_EP_Set_STAT_TX(EP0, EP_VALID);
 
             //Set global status that the USB is ready to transmitt HID reports
-            USB_status = 0x02;
+            USB_status = USB_STATUS_HID_READY;
 
             /* All HID reports have the same size so we set this once here */
             USB_EP_Set_TX_Count(EP1, HID_REPORT_SIZE);
@@ -278,11 +283,11 @@ void USB_Handle_OUT(void) {
 }
 
 void USB_Handle_IN(void) {
-    if (USB_status == 0x01) {
+    if (USB_status == USB_STATUS_ADDRESS_READY) {
         /* If address is ready to be changed then change it */
 
         USB_EP_Clear_CTR_TX(EP0);
-        USB_status = 0x00U; //Default USB status
+        USB_status = USB_STATUS_DEFAULT; //Default USB status
         USB->DADDR = addr | USB_DADDR_EF;
         USB_EP_Set_STAT_TX(EP0, EP_VALID);
         USB_EP_Set_STAT_RX(EP0, EP_VALID);

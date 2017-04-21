@@ -1,14 +1,20 @@
 # STM32F103C8T6-from-scratch
-A minimal example to get a STM32F103C8T6 up and running under a GNU-toolchain.
+This repository contains examples on how do program and use the STM32F103C8T6
+microcontroller and its peripherals. The examples are simple and easy to use as
+I have programmed them stand-alone without the bloat of external libraries. 
 
-This repository contains a linker script which defines the necessary
-memory-locations, an assembler startup program which sets up a C-environment and
-thereafter calls the main() function in main.c. The included main function
-toggles pin C13 which is an included LED on many cheap stm32f1 development
-boards.
+The programs are all compiled with gcc and makefiles meaning that no IDE is
+required unless you want to use one.
 
-The makefile contains in addition to the regular compilation also commands to
-flash the program using a stlinkv2 with the open source st-util/st-flash
-utilities. If the "DEBUG" flag in the makefile is set to -g then the
-microcontroller can be debugged by first running "st-util" to set up the
-gdb-server and then connecting to it using "make debug".
+If you have access to the stlink programmer you can install the st-util
+program to both flash the program and debug it using the makefile commands "make
+flash" and "make debug" using gnu gdb. The "make debug" command requires that
+the st-util command running in another terminal.
+
+The programs are all self-contained and increment in number as more
+functionality is added. The first example toggles an on-board LED while latter
+examples program the microcontroller to act as a USB mouse pointing device.
+
+Stay tuned as I will create a guide with explanation how most of this is done.
+For example writing the linker script, the assembler start-up program which
+initializes C programming environment etc.

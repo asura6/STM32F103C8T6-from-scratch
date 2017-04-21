@@ -145,7 +145,7 @@ void USB_Update_HID_Report(void) {
 /* When the device has received a SET IDLE command it is ready to transmit data
  * from the interrupt endpoint and this function starts returning zero-value */
 uint8_t USB_Is_Not_Ready(void) {
-    if (USB_status == 0x02U) {
+    if (USB_status == USB_STATUS_HID_READY) {
         return 0;
     }
     return 1;
