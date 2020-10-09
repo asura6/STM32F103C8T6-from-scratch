@@ -1,7 +1,7 @@
 # STM32F103C8T6-from-scratch
 This repository contains examples on how do program and use the STM32F103C8T6
 microcontroller and its peripherals. The examples are simple and easy to use as
-I have programmed them stand-alone without the bloat of external libraries. The
+I have programmed them stand-alone without external libraries. The
 programs are written from scratch in the sense that only the CMSIS register
 definitions are used.
 
