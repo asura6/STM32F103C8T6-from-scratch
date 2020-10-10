@@ -1,5 +1,5 @@
 # STM32F103C8T6-from-scratch
-This repository contains examples on how do program and use the STM32F103C8T6
+This repository contains examples on how do program and use the STM32F103C8
 microcontroller and its peripherals. The examples are simple and easy to use as
 I have programmed them stand-alone without external libraries. The
 programs are written from scratch in the sense that only the CMSIS register
@@ -17,6 +17,5 @@ The programs are all self-contained and increment in number as more
 functionality is added. The first example toggles an on-board LED while latter
 examples program the microcontroller to act as a USB mouse pointing device.
 
-Stay tuned as I will create a guide with explanation how most of this is done.
-For example writing the linker script, the assembler start-up program which
-initializes C programming environment etc.
+Some information about this project is available at
+https://risaksson.com/2020/10/10/embedded-development-bare-metal-programming-an-arm-cortex-microcontroller/
